@@ -2,8 +2,6 @@
 # ---------------------------------------- All libraries, variables and functions are defined in this fil ------------------------------------
 # --------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
 import numpy as np
 import pandas as pd
 from pathlib import Path
