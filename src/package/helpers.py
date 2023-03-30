@@ -48,22 +48,34 @@ from plotly.subplots import make_subplots
 from package.constants import * # constants
 
 # main functions -----------------------------------------------------------------------------------------------------------------------------
-def model_evaluation(prediction):
+# evaluation
+def model_evaluation(y_test, prediction,tag):
     accuracy_score = balanced_accuracy_score(y_test, prediction)
     print(f"Logistic Regression Model - Original Data")
     print(f"1) Accuracy Score: {round(accuracy_score,2)}%")
     print(f"------------------------------------------------------------")
     # Generate a confusion matrix for the model
     confusion_matrix_df = pd.DataFrame(confusion_matrix(y_test, prediction),
-                                       index=["Actual "+item for item in target_names],
-                                       columns=["Predicted "+item for item in target_names])
+                                       index=["Actual "+item for item in tag],
+                                       columns=["Predicted "+item for item in tag])
     print(f"2) Confusion Matrix:")
     print(confusion_matrix_df)
     print(f"------------------------------------------------------------")
     # Print the classification report for the model
-    reports = classification_report(y_test, prediction, target_names=target_names)
+    reports = classification_report(y_test, prediction, target_names=tag)
     print(f"3) Classification Report:")
     print(reports)
+    
+# data frame summary
+def df_summary(df):
+    print(f"Data Rows: {df.shape[0]}\nData Columns: {df.shape[1]}\n------------------------------------------------------------")
+    summary = pd.DataFrame({'unique_count': df.nunique(),
+                            'dtypes': df.dtypes,
+                            'null_count': df.isnull().sum(),
+                            'null(%)': 100*df.isnull().mean()})
+    summary.sort_values(by='unique_count', ascending=False, inplace=True)
+    print(summary)
+    
     
 # Plotting functions -------------------------------------------------------------------------------------------------------------------------
 def sub_bar(columns, sub_name, tags, title):
