@@ -130,6 +130,110 @@ def sub_bar(columns, sub_name, tags, title):
 
     # Show the figure
     fig.show()
+
+def sub_mix(df, hist_plot, vio_plot, title_all):
+    # Create the histogram subplot
+    hist_trace = go.Histogram(
+        x=df[hist_plot],
+        nbinsx=279,
+        marker_color='#cd5a4d',
+        opacity=1,
+        showlegend=False
+    )
+    
+    # Create the violin subplot
+    vio_trace = [
+        go.Violin(
+            y=df[df[vio_plot[0]] == 0][vio_plot[1]],
+            name='Healthy',
+            box_visible=True,
+            meanline_visible=True,
+            fillcolor="#cd5a4d",
+            opacity=0.7,
+            line=dict(color='black', width=1),
+            marker=dict(color='black', size=5, opacity=0.1),
+            showlegend=False
+        ),
+        go.Violin(
+            y=df[df[vio_plot[0]] == 1][vio_plot[1]],
+            name='High Risk',
+            box_visible=True,
+            meanline_visible=True,
+            fillcolor="#0A4853",
+            opacity=0.7,
+            line=dict(color='black', width=1),
+            marker=dict(color='black', size=5, opacity=0.1),
+            showlegend=False
+        )
+    ]
+    
+    # Define subplot titles and axis labels
+    subplot_titles = [
+        f"<span style='font-size: 20px; color:black; font-family:Times New Roman'>{title_all[0]}</span>",
+        f"<span style='font-size: 20px; color:black; font-family:Times New Roman'>{title_all[1]}</span>"
+    ]
+    x_axis_labels = ["Loan Size", "Loan Status"]
+    y_axis_labels = ["Frequency", "Debt to Income"]
+    # Define layout
+    layout = go.Layout(
+        width=1200,
+        height=600,
+        legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.01,
+            bgcolor= '#f7f7f7',
+            font=dict(color='black')
+        ),
+        plot_bgcolor='#f7f7f7',
+        paper_bgcolor="#ffffff"
+    )
+
+    # Create figure with subplots
+    fig = make_subplots(
+        rows=1,
+        cols=2,
+        subplot_titles=subplot_titles,
+        horizontal_spacing=0.1
+    )
+    
+    # Add traces to subplots
+    fig.add_trace(hist_trace, row=1, col=1)
+    for vio in vio_trace:
+        fig.add_trace(vio, row=1, col=2)
+
+    # Update x and y axis titles and styling
+    for i in range(2):
+        fig.update_xaxes(
+            title=dict(
+                text=x_axis_labels[i],
+                font=dict(size=18, color='black', family="calibri")
+            ),
+            tickcolor='#ffffff',
+            tickfont=dict(size=14, family='calibri', color='black'),
+            showline=True,
+            linewidth=0.5,
+            linecolor='black',
+            row=1,
+            col=i+1
+        )
+        fig.update_yaxes(
+            title=dict(
+                text=y_axis_labels[i],
+                font=dict(size=18, color='black', family="calibri")
+            ),
+            tickfont=dict(size=14, family='calibri', color='black'),
+            row=1,
+            col=i+1
+        )
+
+    # Update layout
+    fig.update_layout(layout)
+
+    # Display figure
+    fig.show()
+    
     
 def line (df, chart_title):
     # Create a list of traces for each column in the DataFrame
@@ -177,39 +281,37 @@ def line (df, chart_title):
     # Show the figure
     fig.show()
 
-def histogram (df, bins, location):
-    # Set the figure size
-    plt.figure(figsize=(FIG_HEIGHT, FIG_WIDTH))
-
-    #Plot the Clusters
-    ax = sns.scatterplot(data = df_market_scaled,
-                         x = 'price_change_percentage_24h',
-                         y = 'price_change_percentage_7d', 
-                         hue = km.labels_, 
-                         palette = 'colorblind', 
-                         alpha = 0.8, 
-                         s = 150,
-                         legend = False)
-
-    #Plot the Centroids
-    ax = sns.scatterplot(data = cluster_centers, 
-                         x = 'price_change_percentage_24h',
-                         y = 'price_change_percentage_7d', 
-                         hue = cluster_centers.index, 
-                         palette = 'colorblind', 
-                         s = 600,
-                         marker = 'D',
-                         ec = 'black', 
-                         legend = False)
-
-    # Add Centroid Labels
-    for i in range(len(cluster_centers)):
-                   plt.text(x = cluster_centers.price_change_percentage_24h[i], 
-                            y = cluster_centers.price_change_percentage_7d[i],
-                            s = i, 
-                            horizontalalignment='center',
-                            verticalalignment='center',
-                            size = 15,
-                            weight = 'bold',
-                            color = 'white')
+def histogram (df, chart_title):
+    trace=go.Histogram(x=df['loan_size'], nbinsx=279, marker_color='blue', opacity=0.7)
+    
+    layout = go.Layout(title=dict(text=chart_title,
+                                  font=dict(size= 24, color= 'black', family= "Times New Roman"),
+                                  x=0.5,
+                                  y=0.9),
+                       width=1000,
+                       height=600,
+                       legend=dict(
+                           yanchor="top",
+                           y=0.99,
+                           xanchor="left",
+                           x=0.01,
+                           bgcolor= '#f7f7f7',
+                           font=dict(color='black')),
+                       xaxis=dict(title='Loan Size',
+                                  color= 'black',
+                                  showline=True,
+                                  linewidth=1,
+                                  linecolor='black',
+                                  mirror=True), 
+                       yaxis=dict(title='Frequency',
+                                  color= 'black',
+                                  showline=True,
+                                  linewidth=1,
+                                  linecolor='black',
+                                  mirror=True),
+                       plot_bgcolor='#f7f7f7',
+                       paper_bgcolor="#f7f7f7")
+    
+    fig = go.Figure(data=trace, layout=layout)
+    fig.show()
 # -------------------------------------------------------------------------------------------------------/
