@@ -7,13 +7,17 @@ import pandas as pd
 from pathlib import Path
 from sklearn.metrics import balanced_accuracy_score, confusion_matrix, classification_report
 
+# Import the train_test_learn module
+from sklearn.model_selection import train_test_split
+from imblearn.over_sampling import RandomOverSampler # Import the RandomOverSampler module form imbalanced-learn
+
 # Import Models:
 from sklearn.linear_model import LogisticRegression # Logistic Regression
 from sklearn.ensemble import RandomForestClassifier # RandomForest
 
 
-from imblearn.over_sampling import RandomOverSampler # Import the RandomOverSampler module form imbalanced-learn
-
+# Import the RandomOverSampler module form imbalanced-learn
+from imblearn.over_sampling import RandomOverSampler
 
 # ------------------------------------------------
 # Import LogisticRegression
@@ -49,9 +53,13 @@ from package.constants import * # constants
 
 # main functions -----------------------------------------------------------------------------------------------------------------------------
 # evaluation
-def model_evaluation(y_test, prediction,tag):
+def model_evaluation(y_test, prediction,tag, i):
+    if i[1]==1:
+        method_name="Original Data"
+    else:
+        method_name="ROS Data"
     accuracy_score = balanced_accuracy_score(y_test, prediction)
-    print(f"Logistic Regression Model - Original Data")
+    print(f"{i[0]} - {method_name}")
     print(f"1) Accuracy Score: {round(accuracy_score,2)}%")
     print(f"------------------------------------------------------------")
     # Generate a confusion matrix for the model
@@ -80,11 +88,13 @@ def df_summary(df):
 # Plotting functions -------------------------------------------------------------------------------------------------------------------------
 def sub_bar(columns, sub_name, tags, title):
     subplots_data = []
+    color_plot=["#0A4853","#cd5a4d"]
     for i, data in enumerate(columns):
         subplot = go.Bar(
             name=sub_name[i],
             x=[item.upper() for item in tags],
             y=data,
+            marker_color=color_plot[i],
             hovertemplate=sub_name[i].upper()+" %{x}<br>"+"<b>%{y}</b><br>"+"<extra></extra>")
         subplots_data.append(subplot)
     # Define the layout for the figure
@@ -93,7 +103,7 @@ def sub_bar(columns, sub_name, tags, title):
                    font=dict(size= 24, color= 'black', family= "Times New Roman"),
                    x=0.5,
                    y=0.9),
-        width=1000,
+        width=1200,
         height=600,
         legend=dict(
             yanchor="top",
