@@ -7,22 +7,21 @@ import pandas as pd
 from pathlib import Path
 from sklearn.metrics import balanced_accuracy_score, confusion_matrix, classification_report
 
-# Import the train_test_learn module
-from sklearn.model_selection import train_test_split
+# Import sampling 
+from sklearn.model_selection import train_test_split # Import the train_test_learn module
 from imblearn.over_sampling import RandomOverSampler # Import the RandomOverSampler module form imbalanced-learn
 
-# Import Models:
+# Import models:
 from sklearn.linear_model import LogisticRegression # Logistic Regression
 from sklearn.ensemble import RandomForestClassifier # RandomForest
+import xgboost as xgb # Extreme gradient boosting (XGBoost)
+import lightgbm as lgb # LightGBM
 
 
 # Import the RandomOverSampler module form imbalanced-learn
 from imblearn.over_sampling import RandomOverSampler
 
 # ------------------------------------------------
-# Import LogisticRegression
-from sklearn.linear_model import LogisticRegression
-
 # Import confusion_matrix
 from sklearn.metrics import confusion_matrix
 
@@ -31,19 +30,6 @@ from sklearn.metrics import classification_report,confusion_matrix,roc_curve,roc
 from sklearn.metrics import accuracy_score,log_loss
 from sklearn import tree, metrics
 # ---------------------------------------------------
-
-import pandas as pd
-
-import hvplot.pandas
-from sklearn.cluster import KMeans
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
-
-from matplotlib import pyplot as plt
-import seaborn as sns
-sns.set_theme()
-
-from sklearn.cluster import KMeans
 # plotting
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
