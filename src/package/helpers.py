@@ -17,19 +17,6 @@ from sklearn.ensemble import RandomForestClassifier # RandomForest
 import xgboost as xgb # Extreme gradient boosting (XGBoost)
 import lightgbm as lgb # LightGBM
 
-
-# Import the RandomOverSampler module form imbalanced-learn
-from imblearn.over_sampling import RandomOverSampler
-
-# ------------------------------------------------
-# Import confusion_matrix
-from sklearn.metrics import confusion_matrix
-
-from sklearn.metrics import precision_recall_curve, f1_score, auc
-from sklearn.metrics import classification_report,confusion_matrix,roc_curve,roc_auc_score
-from sklearn.metrics import accuracy_score,log_loss
-from sklearn import tree, metrics
-# ---------------------------------------------------
 # plotting
 import plotly.graph_objs as go
 from plotly.subplots import make_subplots
@@ -230,6 +217,33 @@ def sub_mix(df, hist_plot, vio_plot, title_all):
     # Display figure
     fig.show()
     
+def secondary_bar(df):
+    color_plot=["#0A4853","#cd5a4d"]
+    fig = go.Figure(
+        data=[
+            go.Bar(name=df.columns[0], x=df[df.columns[0]], y=df.index,orientation='h', xaxis='x', offsetgroup=1, marker_color=color_plot[0]),
+            go.Bar(name=df.columns[1], x=df[df.columns[1]], y=df.index,orientation='h', xaxis='x2', offsetgroup=2, marker_color=color_plot[1])
+        ],
+        layout=dict(
+            xaxis=dict(title=dict(text=df.columns[0]+" importances", font=dict(size= 18, color= 'black', family= "calibri"))
+                       , showline=True,linewidth=1,linecolor='black', mirror=True,
+                      tickfont=dict(size= 14, family='calibri', color='black' )),
+            xaxis2=dict(title=dict(text=df.columns[1]+" importances", font=dict(size= 18, color= 'black', family= "calibri"))
+                        ,overlaying='x', side= 'top',
+                        tickfont=dict(size= 14, family='calibri', color='black' )),
+            barmode='group',
+            legend=dict(yanchor="bottom",y=0.01,xanchor="right",x=0.99,bgcolor= '#f7f7f7',
+            font=dict(color='black')),
+            width=1200,
+            height=600, 
+        yaxis=dict(title=dict(text='Features', font=dict(size= 18, color= 'black', family= "calibri")),
+                  tickfont=dict(size= 14, family='calibri', color='black' )),
+        plot_bgcolor='#f7f7f7',
+        paper_bgcolor="#ffffff")
+    )
+
+    # Change the bar mode and legend layout
+    fig.show()
     
 def line (df, chart_title):
     # Create a list of traces for each column in the DataFrame
