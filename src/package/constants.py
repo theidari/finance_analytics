@@ -1,43 +1,29 @@
-# --------------------------------------------------------------------------------------------
-#                                 CONSTANTS
-# --------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------- CONSTANTS -------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------------------
 
 # Folders and files names
-DATA_URL = "../data/"
-OUTPUT_URL = "../Output/"
+DATA_URL          = "../data/"
+OUTPUT_URL        = "../results/"
 
-# Station location (station_location.py) constants
-SESSION_COLUMN_NAMES = ["station", "name", "latitude", "longitude", "elevation", "number_of_collected_data"]
+DATA_ID           = ["Original Data","ROS Data"]
+TAGS              = ['healthy', 'high risk']
 
-# Plot constants
-# Map plot constants
-MAP_WIDTH = 550
-MAP_HEIGHT = 475
-MAP_TOOLS = "hover"
-MARKER_SHAPE = "triangle_dot"
-MARKER_SIZE = 15
-MARKER_FILL_COLOR = "red"
-MARKER_FILL_ALPHA = 0.5
-MARKER_LINE_COLOR = "black"
-MARKER_LINE_ALPHA = 0.8
-
-# Histogram and line plot constants
-FIG_HEIGHT = 8
-FIG_WIDTH = 8
-TITLE_FONT_SIZE = 15
-LABEL_FONT_SIZE = 12
-TICKS_FONT_SIZE = 10
-LEGEND_FONT_SIZE = 10
-FONT_WEIGHT = "bold"
-PLOT_COLOR = "tab:blue"
-LEGEND_LOCATION = "best"
-HIS_X_LABEL = "Temperature"
-HIS_Y_LABEL = "Frequency"
-LINE_X_LABEL = "Date (yyyy-mm-dd)"
-LINE_Y_LABEL = "Inches"
-LINE_WIDTH = 1 
+# Line and break
+H_LINE            = "------------------------------------------------------------"
+H_LINE_ENTER      = "\n------------------------------------------------------------"
 
 # Colors
-SEVENSET=["#ffd700","#ffb14e","#fa8775","#ea5f94","#cd34b5","#9d02d7","#0000ff"]
-FOURSET=1
-FIVESET=2
+COLOR_SET         = ["#0A4853","#cd5a4d"] # repo color range
+
+# Plot constants
+PLT_WIDTH         = 1200 # plot width
+PLT_HEIGHT        = 600 # plot height
+PLT_BGCOLOR       = "#f7f7f7" # background color
+PLT_PAPER_BGCOLOR = "#ffffff" # plot paper color
+PLT_TITLE_FONT    = dict(size= 24, color= 'black', family= "Times New Roman") # plot title
+AXES_TITLE_FONT   = dict(size=18, color="black", family="calibri") # plot axes title font
+TICK_FONT         = dict(size=14, color="black", family="calibri") # plot ticks font
+PLT_LEGEND        = dict(yanchor="top", y=0.99, xanchor="left", x=0.01, bgcolor= '#f7f7f7', font=dict(color='black')) # plot legend
+PLT_LEGEND_BOTTOM = dict(yanchor="bottom",y=0.01,xanchor="right",x=0.99,bgcolor= '#f7f7f7',font=dict(color='black')) # sec legend
+# --------------------------------------------------------------------------------------------------------------------------------------------
