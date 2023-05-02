@@ -78,8 +78,7 @@ def model_evaluation(y_test, prediction, i):
     print(f"3) Classification Report:")
     print(reports)
     return accuracy_score, confusion_matrix_df, reports
-    
-COLOR_SET=["#0A4853","#cd5a4d"]   
+      
 # Plotting functions
 # --------------------------------------------------------------------------------------------------------------------------------------------
 # histogram and violin plot mix ______________________________________________________________________________________________________________
