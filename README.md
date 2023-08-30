@@ -6,7 +6,7 @@
 Financial institutions face a significant risk known as credit risk, which refers to the possibility of borrowers or counterparties defaulting on a loan and causing financial loss to the lender. To mitigate this risk, lenders evaluate the creditworthiness of borrowers through a process called credit risk classification, which assesses the likelihood of default. Effective credit risk classification is crucial for lenders to make well-informed decisions and efficiently manage their portfolio. <b>This project's objective is to create a machine learning-based credit risk classification model</B>.</p>
 
 <h3>Research Report</h3>
-Access the research report through this link: <b><a href="https://theidari.github.io/credit_risk_classification">Research Report</a></b>
+Access the research report through this link: <b><a href="https://theidari.github.io/finance_analytics">Research Report</a></b>
 
 </p>
 <h3>References</h3>
