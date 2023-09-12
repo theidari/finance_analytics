@@ -74,7 +74,7 @@ In addition to statistical methods, we can also employ unsupervised learning tec
 
 
 <p align="center">
-  <img src="https://github.com/theidari/credit_risk_classification/blob/main/assets/credit_risk_header.png" width=900px>
+  <img src="https://github.com/theidari/credit_risk_classification/blob/main/assets/credit_risk_header.png" width=500px>
 </p>
 <h3>Introduction and Research Objectives</h3>
 <p align="justify">
