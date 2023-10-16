@@ -69,9 +69,6 @@ In addition to statistical methods, we can also employ unsupervised learning tec
 <li>Thoroughly validate and refine the combined results.</li>
 </ul>
 
-<h3>References</h3>
-
-
 
 <p align="center">
   <img src="https://github.com/theidari/credit_risk_classification/blob/main/assets/credit_risk_header.png" width=500px>
